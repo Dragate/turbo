@@ -7764,22 +7764,6 @@ dependencies = [
 
 [[package]]
 name = "sourcemap"
-version = "6.4.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e4cbf65ca7dc576cf50e21f8d0712d96d4fcfd797389744b7b222a85cdf5bd90"
-dependencies = [
- "data-encoding",
- "debugid",
- "if_chain",
- "rustc_version 0.2.3",
- "serde",
- "serde_json",
- "unicode-id",
- "url 2.4.1",
-]
-
-[[package]]
-name = "sourcemap"
 version = "8.0.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "cf0b8c0d9d32f81aa0ab2b68ab634d9bbce287423606656fddb456ac8601aec3"
@@ -8152,7 +8136,7 @@ dependencies = [
  "rustc-hash",
  "serde",
  "serde_json",
- "sourcemap 8.0.0",
+ "sourcemap",
  "swc_atoms",
  "swc_cached",
  "swc_common",
@@ -8277,7 +8261,7 @@ dependencies = [
  "rustc-hash",
  "serde",
  "siphasher",
- "sourcemap 8.0.0",
+ "sourcemap",
  "swc_atoms",
  "swc_eq_ignore_macros",
  "swc_visit",
@@ -8300,7 +8284,7 @@ dependencies = [
  "once_cell",
  "pathdiff",
  "serde",
- "sourcemap 8.0.0",
+ "sourcemap",
  "swc_atoms",
  "swc_common",
  "swc_config",
@@ -8322,7 +8306,7 @@ dependencies = [
  "indexmap 2.2.3",
  "serde",
  "serde_json",
- "sourcemap 8.0.0",
+ "sourcemap",
  "swc_cached",
  "swc_config_macro",
 ]
@@ -8559,7 +8543,7 @@ dependencies = [
  "once_cell",
  "rustc-hash",
  "serde",
- "sourcemap 8.0.0",
+ "sourcemap",
  "swc_atoms",
  "swc_common",
  "swc_ecma_ast",
@@ -8809,9 +8793,9 @@ dependencies = [
 
 [[package]]
 name = "swc_ecma_loader"
-version = "0.45.23"
+version = "0.45.24"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "6732100aba9bec438fcff857ab8db5e5d3b64b42a522aec7c388d8c98a36d22a"
+checksum = "6d32a45baefc2e53ad553f30df5536fbd2818b5e1adc84c801a0e88e09a0a7e9"
 dependencies = [
  "anyhow",
  "dashmap",
@@ -9146,9 +9130,9 @@ dependencies = [
 
 [[package]]
 name = "swc_ecma_transforms_testing"
-version = "0.140.16"
+version = "0.140.18"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e9a51288aebf6894f8643c44ad08ed1d9c81b8bfce47195c13f9ff994b77a946"
+checksum = "7c0ea6f85b7bf04391a172d7a369e49865effa77ec3a6cd0e969a274cfcb982d"
 dependencies = [
  "ansi_term",
  "anyhow",
@@ -9157,7 +9141,7 @@ dependencies = [
  "serde",
  "serde_json",
  "sha2",
- "sourcemap 6.4.1",
+ "sourcemap",
  "swc_common",
  "swc_ecma_ast",
  "swc_ecma_codegen",
@@ -9251,7 +9235,7 @@ dependencies = [
  "radix_fmt",
  "regex",
  "serde",
- "sourcemap 8.0.0",
+ "sourcemap",
  "swc_atoms",
  "swc_common",
  "swc_ecma_ast",
@@ -11050,7 +11034,7 @@ dependencies = [
  "serde",
  "serde_json",
  "serde_qs",
- "sourcemap 8.0.0",
+ "sourcemap",
  "swc_core",
  "tokio",
  "tracing",
@@ -11162,7 +11146,7 @@ dependencies = [
  "serde",
  "serde_json",
  "serde_qs",
- "sourcemap 8.0.0",
+ "sourcemap",
  "swc_core",
  "tokio",
  "tracing",
@@ -11338,7 +11322,7 @@ dependencies = [
  "serde",
  "serde_json",
  "serde_qs",
- "sourcemap 8.0.0",
+ "sourcemap",
  "tracing",
  "turbo-tasks",
  "turbo-tasks-build",
