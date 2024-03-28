@@ -112,7 +112,7 @@ impl GlobSet {
         Ok(Self {
             include,
             exclude,
-            exclude_raw: BTreeSet::from_iter(raw_excludes.into_iter()),
+            exclude_raw: BTreeSet::from_iter(raw_excludes),
         })
     }
 }
