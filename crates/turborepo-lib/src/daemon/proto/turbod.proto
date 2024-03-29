@@ -25,6 +25,8 @@ service Turbod {
   //
   // Since 1.12.0
   rpc DiscoverPackagesBlocking (DiscoverPackagesRequest) returns (DiscoverPackagesResponse);
+
+  rpc GetFileHashes (GetFileHashesRequest) returns (GetFileHashesResponse);
 }
 
 message HelloRequest {
@@ -110,4 +112,15 @@ enum PackageManager {
   Pnpm6 = 3;
   Yarn = 4;
   Bun = 5;
+}
+
+message GetFileHashesRequest {
+  // AnchoredSystemPathBuf
+  string package_path = 1;
+  repeated string input_globs = 2;
+}
+
+message GetFileHashesResponse {
+  // RelativeUnixPathBuf -> Hash
+  map<string, string> file_hashes = 1;
 }

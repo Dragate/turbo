@@ -17,7 +17,7 @@ use turborepo_scm::{package_deps::GitHashes, Error as SCMError, SCM};
 
 use crate::{globwatcher::GlobSet, package_watcher::DiscoveryData, NotifyError, OptionalWatch};
 
-struct HashWatcher {
+pub struct HashWatcher {
     _exit_tx: oneshot::Sender<()>,
     _handle: tokio::task::JoinHandle<()>,
     query_tx_lazy: OptionalWatch<mpsc::Sender<Query>>,
@@ -60,17 +60,16 @@ impl<T> From<mpsc::error::SendError<T>> for Error {
 }
 
 impl HashWatcher {
-    fn new(
+    pub fn new(
         repo_root: AbsoluteSystemPathBuf,
         package_discovery: watch::Receiver<Option<DiscoveryData>>,
         file_events: OptionalWatch<broadcast::Receiver<Result<Event, NotifyError>>>,
-        scm: &SCM,
+        scm: SCM,
     ) -> Self {
         let (exit_tx, exit_rx) = oneshot::channel();
         //let (query_tx, query_rx) = mpsc::channel(16);
         let (query_tx_state, query_tx_lazy) = OptionalWatch::new();
-        let process =
-            HashWatchProcess::new(repo_root, package_discovery, scm.clone(), query_tx_state);
+        let process = HashWatchProcess::new(repo_root, package_discovery, scm, query_tx_state);
         let handle = tokio::spawn(process.watch(exit_rx, file_events));
         Self {
             _exit_tx: exit_tx,
@@ -644,7 +643,7 @@ mod tests {
         let package_watcher = PackageWatcher::new(repo_root.clone(), recv, cookie_writer).unwrap();
         let package_discovery = package_watcher.watch_discovery();
         let hash_watcher =
-            HashWatcher::new(repo_root.clone(), package_discovery, watcher.watch(), &scm);
+            HashWatcher::new(repo_root.clone(), package_discovery, watcher.watch(), scm);
 
         let foo_path = repo_root.join_components(&["packages", "foo"]);
 
@@ -730,7 +729,7 @@ mod tests {
         let package_watcher = PackageWatcher::new(repo_root.clone(), recv, cookie_writer).unwrap();
         let package_discovery = package_watcher.watch_discovery();
         let hash_watcher =
-            HashWatcher::new(repo_root.clone(), package_discovery, watcher.watch(), &scm);
+            HashWatcher::new(repo_root.clone(), package_discovery, watcher.watch(), scm);
 
         let bar_path = repo_root.join_components(&["packages", "bar"]);
 
